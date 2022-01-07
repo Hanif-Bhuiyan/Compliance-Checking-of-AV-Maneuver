@@ -1,0 +1,1 @@
+SELECT ?is_positionx WHERE {ab:vehicle ab:is_positionx ?is_positionx.}

@@ -1,0 +1,1 @@
+SELECT ?is_acceleration WHERE {ab:vehicle ab:is_acceleration ?is_acceleration.}
