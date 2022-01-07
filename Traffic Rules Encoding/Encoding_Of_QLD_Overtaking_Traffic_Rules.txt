@@ -1,0 +1,2151 @@
+ %% Rule 140: No overtaking unless safe to do so %%
+
+---
+
+r_140
+
+IF
+  \emptyset
+THEN[OBL]
+  %% must not overtake a vehicle %%
+  NEG (driver_Overtake_vehicle) \OTIMES max_20PenaltyUnits
+
+---
+
+r_140exc
+
+IF
+    %% the driver has a clear view of any approaching traffic %%
+    driver_HasClearViewOf_approachingTraffic
+  AND
+    %% the driver can safely overtake the vehicle %%
+    driver_CanSafelyOvertake_vehicle
+THEN [P]
+    %% A driver must not overtake a vehicle unless %%
+    driver_Overtake_vehicle
+
+r_140exc >> r_140
+
+--- %% 2 %%
+
+%% Rule 141: No overtaking etc. to the left of a vehicle %%
+
+r_{OvertakeLeft}
+IF
+  OvertakeLeft
+THEN [Count-As]
+  Overtake
+
+---
+
+r_141
+
+IF
+  \emptyset
+THEN [OBL]
+  %% must not overtake a vehicle to the left of the vehicle %%
+  NEG (driver_OvertakeToTheLeftOf_vehicle) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{141-bicycle}
+
+IF
+  %% except the rider of a bicycle %%
+  driver_Of_bicyle
+THEN [P]
+  %% overtake a vehicle to the left of the vehicle %%
+  driver_OvertakeToTheLeftOf_vehicle
+
+r_{141-bicycle} > r_{141}
+
+---
+
+r_{141.a}
+
+IF
+    %% the driver is driving on a multi-lane road %%
+    driver_IsDrivingOn_MultiLaneRoad
+  AND
+    %% the vehicle can be safely overtaken in a marked lane %%
+    vehicle_CanBeSafelyOvertakenIn_markedLane
+  AND
+    %% marked lane to the left of the vehicle %%
+    markedLane_IsToTheLeftOf_vehicle
+THEN [P]
+    %% overtake a vehicle to the left of the vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{141.a} > r_{141}
+
+---
+
+r_{141.b.1}
+
+IF
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% overtake a vehicle to the left of the vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{141.b.1} > r_{141}
+
+---
+
+r_{141.b.2}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% overtake a vehicle to the left of the vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{141.b.2} > r_{141}
+
+---
+
+r_{141_c}
+
+IF
+    %% the vehicle is stationary %%
+    vehicle_IsStationary
+  AND
+    %% can be safely overtaken to the left of the vehicle %%
+    vehicle_CanBeSafelyOvertakenToTheLeft
+THEN [P]
+    %% overtake a vehicle to the left of the vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+r_{141.c} > r_{141}
+
+---
+
+r_{141.d.a}
+
+IF
+  %% the driver is lane filtering in compliance with section 151A %%
+  driver_IsLawfullyLaneFiltering
+THEN [P]
+  %% overtake a vehicle to the left of the vehicle %%
+  driver_OvertakeToTheLeftOf_vehicle
+r_{141.d.a} > r_{141}
+
+---
+
+r_{141.d.b}
+
+IF
+  %% the driver is edge filtering in compliance with section 151B %%
+  driver_IsLawfullyEdgeFiltering
+THEN [P]
+  %% overtake a vehicle to the left of the vehicle %%
+  driver_OvertakeToTheLeftOf_vehicle
+
+r_{141.d.b} > r_{141}
+
+--- %% 11  %%
+
+%% Section 151A Lane filtering between slow or stationary vehicles on a motorbike %%
+
+r_{151A.1.a}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% if the rider rides the motorbike between %%
+    motorbike_InBetween_(LineOfTraffic1, LineOfTraffic2)
+  AND
+    LineOfTraffic1_IsTravellingInTheSameDirectionOf_motorbike
+  AND
+    LineOfTraffic2_IsTravellingInTheSameDirectionOf_motorbike
+  AND
+    %% two adjacent lines of traffic %%
+    LineOfTraffic1_IsAdjacentTo_LineOfTraffic2
+THEN [Count-As]
+    %% The rider of a motorbike is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+
+---
+
+r_{151A.1.b}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% rider rides the motorbike between two vehicles %%
+    motorbike_InBetween_(vehicle1, vehicle2)
+  AND
+    %% each vehicle travelling in the same direction as the motorbike %%
+    vehicle1_IsTravellingInTheSameDirectionOf_motorbike
+  AND
+    %% each vehicle travelling in the same direction as the motorbike %%
+    vehicle2_IsTravellingInTheSameDirectionOf_motorbike
+  AND
+    %% each vehicle travelling in separate lanes %%
+    vehicle1_IsTravellingIn_lane1
+  AND
+    %% each vehicle travelling in separate lanes %%
+    vehicle2_IsTravellingIn_lane2
+  AND
+    %% each vehicle travelling in separate lanes %%
+    lane1_IsSeparatedFrom_lane2
+  AND
+    %% each vehicle travelling in adjacent lanes %%
+    lane1_IsAdjacentTo_lane2
+  AND
+    %% each vehicle travelling in marked lanes %%
+    lane1_IsMarked
+  AND
+    %% each vehicle travelling in marked lanes %%
+    lane2_IsMarked
+THEN [Count-As]
+    %% The rider of a motorbike is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+
+---
+
+r_{151A.2}
+
+IF
+  %% The rider of a motorbike %%
+  rider_Rides_motorbike
+THEN [OBL]
+  %% must not unlawfully lane filter along a length of road %%
+  rider_LawfullyLaneFilteringAlong_lengthOfRoad \OTIMES max_20PenaltyUnits
+
+---
+
+%% Support Rules, for defeasibility, for the matter of Lane Filtering %%
+%% SUPP rules %%
+
+r_{LawfullyLaneFilter}
+
+IF
+  LawfullyLaneFilteringAlong
+THEN [Count-As]
+  LaneFilteringAlong
+
+---
+
+r_{UnlawfullyLaneFilter}
+
+IF
+  UnlawfullyLaneFilteringAlong
+THEN [Count-As]
+  LaneFilteringAlong
+
+---
+
+r_{UnlawfullyLaneFilter.Defeater}
+
+IF
+  UnlawfullyLaneFilteringAlong
+THEN [DEFEATER]
+  NEG LawfullyLaneFilteringAlong
+
+
+r_{UnlawfullyLaneFilter.Defeater} > r_{LawfullyLaneFilter}
+
+---
+
+r_{151A.3.a}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+  AND
+    %% class of the motorbike %%
+    class_Of_motorbike
+  AND
+    %% does not hold an O type licence %%
+    NEG (rider_HoldsOTypeLicenceFor_class)
+THEN [Count-As]
+    %% the rider is taken to have unlawfully lane filtered along the length of road %%
+    rider_UnlawfullyLaneFilteringAlong_lengthOfRoad
+
+---
+
+r_{151A.3.b}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+  AND
+    %% the rider rides at a speed of more than 30km/h %%
+    rider_isRidingAtSpeedGreaterThan_30kilometresPerHour
+THEN [Count-As]
+    %% the rider is taken to have unlawfully lane filtered along the length of road %%
+    rider_UnlawfullyLaneFilterAlong_lengthOfRoad
+
+---
+
+r_{151A.3.c}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+  AND
+    %% the rider rides in a school zone %%
+    rider_IsRidingIn_schoolZone
+THEN [Count-As]
+    %% the rider is taken to have unlawfully lane filtered along the length of road %%
+    rider_UnlawfullyLaneFilterAlong_lengthOfRoad
+
+---
+
+r_{151A.3.d}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+  AND
+    %% a no filtering sign applies to the length of road %%
+    noFilteringSign_AppliesTo_lengthOfRoad
+THEN [Count-As]
+    %% the rider is taken to have unlawfully lane filtered along the length of road %%
+    rider_UnlawfullyLaneFilterAlong_lengthOfRoad
+
+---
+
+r_{151A.3.e}
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is lane filtering along a length of road %%
+    rider_LaneFilteringAlong_lengthOfRoad
+  AND
+    %% it is not safe to lane filter %%
+    NEG (IsSafeToLaneFilter)
+THEN [Count-As]
+    %% the rider is taken to have unlawfully lane filtered along the length of road %%
+    rider_UnlawfullyLaneFilterAlong_lengthOfRoad
+
+---
+
+%% A no filtering sign on a road applies to a length of road starting at the sign
+and ending at the nearer of the following
+(a) if the length of road ends at a T-intersection or dead end—the end of the
+length of road; %%
+
+r_{151A.4.a.i}
+
+IF
+    %% if the length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% no filtering sign on a road %%
+    noFilteringSign_IsOn_road
+  AND
+    %% road ends at a T-intersection %%
+    road_EndsIn_TIntersection
+  AND
+    %% length of road starting at the sign %%
+    lengthOfRoad_StartsAt_noFilteringSign
+  AND
+    %% length of road ending at the sign %%
+    lengthOfRoad_EndsAt_TIntersection
+THEN [OBL]
+    %% no filtering sign on a road applies to a length of road %%
+    noFilteringSign_AppliesTo_lengthOfRoad
+
+---
+
+%% A no filtering sign on a road applies to a length of road starting at the sign
+and ending at the nearer of the following
+(a) if the length of road ends at a T-intersection or dead end—the end of the
+length of road; %%
+
+r_{151A.4.a.ii}
+
+IF
+    %% if the length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% no filtering sign on a road %%
+    noFilteringSign_IsOn_road
+  AND
+    %% road ends at a dead end %%
+    road_EndsIn_deadEnd
+  AND
+    %% length of road starting at the sign %%
+    lengthOfRoad_StartsAt_noFilteringSign
+  AND
+    %% length of road ending at the sign %%
+    lengthOfRoad_EndsAt_deadEnd
+THEN [OBL]
+    %% no filtering sign on a road applies to a length of road %%
+    noFilteringSign_AppliesTo_lengthOfRoad
+
+---
+
+%% A no filtering sign on a road applies to a length of road starting at the sign
+and ending at the nearer of the following
+(b) the next end no filtering sign that is on the road. %%
+
+
+r_{151A.4.b}
+
+IF
+    %% if the length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% no filtering sign on a road %%
+    noFilteringSign_IsOn_road
+  AND
+    %% the next end no filtering sign that is on the road %%
+    endNoFilteringSign_IsOn_road
+  AND
+    %% length of road starting at the sign %%
+    lengthOfRoad_StartsAt_noFilteringSign
+  AND
+    %% length of road ending at the sign %%
+    lengthOfRoad_EndsAt_EndNoFilteringSign
+THEN [OBL]
+    %% no filtering sign on a road applies to a length of road %%
+    noFilteringSign_AppliesTo_lengthOfRoad
+
+---
+
+r_{151A.4.b.exceptionTo.a.i}
+
+IF
+    %% if the length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% road ends at a dead end %%
+    road_EndsIn_deadEnd
+  AND
+    %% no filtering sign on a road %%
+    noFilteringSign_IsOn_road
+  AND
+    %% the next end no filtering sign that is on the road %%
+    endNoFilteringSign_IsOn_road
+  AND
+    %% length of road starting at the sign %%
+    lengthOfRoad_StartsAt_noFilteringSign
+  AND
+    (noFilteringSign_DistanceTo_endNoFilteringSign)_LessThan_(noFilteringSign_DistanceTo_deadEnd)
+  AND
+    %% length of road ending at the sign %%
+    lengthOfRoad_EndsAt_EndNoFilteringSign
+THEN [OBL]
+    %% no filtering sign on a road applies to a length of road %%
+    noFilteringSign_AppliesTo_lengthOfRoad
+
+r_{151A.4.b.exceptionTo.a.i} > r_{151A.4.a.i}
+
+---
+
+r_{151A.4.b.exceptionTo.a.ii}
+
+IF
+    %% if the length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% road ends at a T-intersection %%
+    road_EndsIn_TIntersection
+  AND
+    %% no filtering sign on a road %%
+    noFilteringSign_IsOn_road
+  AND
+    %% the next end no filtering sign that is on the road %%
+    endNoFilteringSign_IsOn_road
+  AND
+    %% length of road starting at the sign %%
+    lengthOfRoad_StartsAt_noFilteringSign
+  AND
+    (noFilteringSign_DistanceTo_endNoFilteringSign)_LessThan_(noFilteringSign_DistanceTo_TIntersection)
+  AND
+    %% length of road ending at the sign %%
+    lengthOfRoad_EndsAt_EndNoFilteringSign
+THEN [OBL]
+    noFilteringSign_AppliesTo_lengthOfRoad
+
+r_{151A.4.b.exceptionTo.a.ii} > r_{151A.4.a.ii}
+
+---
+
+%% rule 151a (5) -- end no filtering sign means a traffic sign—
+(a) with a symbol displaying a motorbike positioned between two vehicles
+with a black diagonal line across the symbol; and %%
+
+r_{151A.5.EndNoFilteringSign}
+
+IF
+    trafficSign_Display_symbol
+  AND
+    symbol_MadeOf_symbolOfMotorbike
+  AND
+    symbol_MadeOf_symbolOfTwoVehicles
+  AND
+    symbolOfMotorbike_InBetween_symbolOfTwoVehicles
+  AND
+    trafficSign_Display_blackDiagonalLine
+  AND
+    blackDiagonalLine_Across_symbol
+  AND
+    trafficSign_DisplayString_`END'_inBlackLetters
+  AND
+    symbolEND_PositionedBelow_symbol
+THEN [Count-As]
+    trafficSign_Is_endNoFilteringSign
+
+---
+
+r_{151A.5.NoFilteringSignSection151A.5}
+
+IF
+    trafficSign_Display_symbol
+  AND
+    symbol_MadeOf_symbolOfMotorbike
+  AND
+    symbol_MadeOf_symbolOfTwoVehicles
+  AND
+    symbolOfMotorbike_InBetween_symbolOfTwoVehicles
+  AND
+    trafficSign_Display_redDiagonalLine
+  AND
+    redDiagonalLine_Across_symbol
+  AND
+    trafficSign_DiplayString_`no filtering'
+THEN [Count-As]
+    trafficSign_Is_noFilteringSign
+
+--- %% 29 %%
+
+%% Section 23 Speed limit in a school zone %%
+
+%% The speed limit applying to a driver for any length of road in a school
+zone is the number of kilometres per hour indicated by the number on the
+school zone sign on a road, or the road, into the zone. %%
+
+r_{Section23.1}
+
+IF
+    %% length of road in a school zone %%
+    lengthOfRoad_In_schoolZone
+  AND
+    %% speed limit applying to a driver for any length of road %%
+    driver_IsDrivingOn_lengthOfRoad
+  AND
+    %% The speed limit is the number of kilometres per hour %%
+    speedLimit_IsNumberOf_kilometresPerHour
+  AND
+    %% kilometres per hour indicated by the number on the school zone sign %%
+    kilometresPerHour_IsIndicatedByNumberOn_schoolZoneSign
+  AND
+    %% school zone sign on a road %%
+    schoolZoneSign_On_road
+  AND
+    %% road into the zone %%
+    road_In_schoolZone
+  AND
+    day_SchoolDay
+THEN [OBL]
+    %% speed limit applying to a driver %%
+    driver_HasSpeedLimit_speedLimit
+
+---
+
+%% school zone means a school zone under section 23(2)
+but only during the times when a lower speed limit applies to a
+driver in the school zone than the speed limit that applies
+to a driver for a length of road %%
+
+r_{Section23.1.exception.1}
+
+IF
+    %% length of road in a school zone %%
+    lengthOfRoad_In_schoolZone
+  AND
+    %% speed limit applying to a driver for any length of road %%
+    driver_IsDrivingOn_lengthOfRoad
+  AND
+    %% The speed limit is the number of kilometres per hour %%
+    speedLimit_IsNumberOf_kilometresPerHour
+  AND
+    %% kilometres per hour indicated by the number on the school zone sign %%
+    kilometresPerHour_IsIndicatedByNumberOn_schoolZoneSign
+  AND
+    %% school zone sign on a road %%
+    schoolZoneSign_On_road
+  AND
+    %% road into the zone %%
+    road_In_schoolZone
+  AND
+    NEG (day_SchoolDay)
+  AND
+    %% only during the times when a lower
+    speed limit applies to a driver %%
+    driver_IsDrivingAtTime_time
+  AND
+    %% only during the times when a lower speed limit
+    applies to a driver in the school zone  %%
+    schoolHours_TimesIndicatedOn_schoolZoneSign
+  AND
+    %% only during the times when a lower speed limit
+    applies to a driver in the school zone %%
+    NEG (time_WithIn_schoolHours)
+THEN [P]
+    %% speed limit applying to a driver %%
+    NEG (driver_HasSpeedLimit_speedLimit)
+
+r_{Section23.1.exception.1} > r_{Section23.1}
+
+---
+
+s_{23.2.a.i}
+
+%% A school zone is (a) if there is a school zone sign and an end school
+zone sign on a road—that length of road %%
+
+IF
+    %% A school zone is —that length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% zone sign on a road %%
+    schoolZoneSign_On_road
+  AND
+    %% end school zone sign %%
+    endSchoolZoneSign_On_road
+  AND
+    %% if there is a school zone sign %%
+    lengthOfRoad_StartsAt_schoolZoneSign
+  AND
+    %% an end school zone sign %%
+    lengthOfRoad_EndsAt_endSchoolZoneSign
+THEN [Count-As]
+    %% A school zone is length of road %%
+    lengthOfRoad_Is_schoolZone
+
+---
+
+s_{23.2.a.ii}
+
+%% A school zone is (a) if there is a school zone sign and a speed limit sign
+with a different number on the sign, on a road—that length of road %%
+
+IF
+    %% A school zone is —that length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% zone sign on a road %%
+    schoolZoneSign_On_road
+  AND
+    %% a speed limit sign %%
+    speedLimitSign_On_Road
+  AND
+    speedLimitSign_IsAfterInDirectionOfTravelOf_schoolZoneSign
+  AND
+    %% if there is a school zone sign %%
+    lengthOfRoad_StartsAt_schoolZoneSign
+  AND
+    %% an end school zone sign %%
+    lengthOfRoad_EndsAt_speedLimitSign
+  AND
+    %% a speed limit sign with a different number on the sign %%
+    speedLimitSchoolZone_NumberOfKilometresPerHoursIndicatedOn_schoolZoneSign
+  AND
+    %% a speed limit sign with a different number on the sign %%
+    speedLimit_NumberOfKilometresPerHoursIndicatedOn_speedLimitSign
+  AND
+    %% a speed limit sign with a different number on the sign %%
+    NEG (speedLimitSchoolZone_Equal_speedLimit)
+THEN [Count-As]
+    %% A school zone is length of road %%
+    lengthOfRoad_Is_schoolZone
+
+---
+
+s_{23.2.b}
+
+%% A school zone is (b) if there is a school zone sign on a road that ends
+in a dead end and there is no sign mentioned in paragraph (a),
+on the length of road beginning at the sign and ending at the dead
+end—that length of road. %%
+
+IF
+    %% school zone sign on a road that ends in a dead end %%
+    road_EndsIn_deadEnd
+  AND
+    %% A school zone is —that length of road %%
+    lengthOfRoad_IsLengthOfRoadOf_road
+  AND
+    %% zone sign on a road %%
+    schoolZoneSign_On_road
+  AND
+    %% if there is a school zone sign on a road %%
+    lengthOfRoad_StartsAt_schoolZoneSign
+  AND
+    %% school zone sign ends in a dead end %%
+    lengthOfRoad_EndsIn_deadEnd
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    %% zone sign on a road %%
+    NEG (schoolZoneSign_On_road)
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    %% end school zone sign %%
+    NEG (endSchoolZoneSign_On_road)
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    %% a speed limit sign %%
+    NEG (speedLimitSign_On_road)
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    NEG (speedLimitSign_IsAfterInDirectionOfTravelOf_schoolZoneSign)
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    %% a speed limit sign with a different number on the sign %%
+    NEG (speedLimitSchoolZone_NumberOfKilometresPerHoursIndicatedOn_schoolZoneSign)
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    %% a speed limit sign with a different number on the sign %%
+    NEG (speedLimit_NumberOfKilometresPerHoursIndicatedOn_speedLimitSign)
+  AND
+    %% there is no sign mentioned in paragraph (a) %%
+    %% a speed limit sign with a different number on the sign %%
+    NEG (speedLimitSchoolZone_Equal_speedLimit)
+THEN [Count-As]
+    %% A school zone is length of road %%
+    lengthOfRoad_Is_schoolZone
+    
+--- %% 34 %%
+
+%% Section 151B: Edge filtering past slow or stationary vehicles on a motorbike %%
+
+r_{151B.1}
+
+%% (1) The rider of a motorbike is edge filtering along a length of road
+if the motorbike enters the edge of the road while the rider is passing
+1 or more vehicles on the road. %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% if the motorbike enters the edge of the road %%
+    rider_RidesTheMotorbike_inTheEdgeOfTheRoad
+  AND
+    %% rider is passing 1 or more vehicles on the road ##
+    rider_PassAnothervehicle_onTheRoad
+  AND
+    %% rider is passing 1 or more vehicles on the road %%
+    AnotherVehicleNumberIs_atLeastOne
+THEN [Count-As]
+    %% The rider of a motorbike is edge filtering along a length of road %%
+    rider_LawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B.2}
+
+%% (2) The rider of a motorbike must not unlawfully edge filter along a
+length of road.
+Maximum penalty—20 penalty units. %%
+
+IF
+  %% The rider of a motorbike %%
+  rider_Rides_motorbike
+THEN [OBL]
+  %% must not unlawfully edge filter along a length of road %%
+  rider_LawfullyEdgeFilterAlong_lenghtOfRoad \OTIMES max_20PenaltyUnits
+
+---
+
+%% SUPP rules %%
+
+r_{LawfullyEdgeFilter}
+
+IF
+  LawfullyEdgeFilteringAlong
+THEN [Count_As]
+  EdgeFilteringAlong
+
+---
+
+r_{UnlawfullyEdgeFilter}
+
+IF
+  UnlawfullyEdgeFilteringAlong
+THEN [Count_As]
+  EdgeFilteringAlong
+
+---
+
+r_{UnlawfullyEdgeFilter.Defeater}
+
+IF
+  UnlawfullyEdgeFilteringAlong
+THEN [DEFEATER]
+  NEG LawfullyEdgeFilteringAlong
+
+r_{UnlawfullyEdgeFilter.Defeater} > r_{LawfullyEdgeFilter}
+
+---
+
+r_{151B.3.a}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(a) the rider does not hold an O type licence for the class of the
+motorbike; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% class of the motorbike %%
+    class_Of_motorbike
+  AND
+    %% does not hold an O type licence %%
+    NEG (rider_HoldsOTypeLicenceFor_class)
+THEN [Count-As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    NEG (rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad)
+
+---
+
+r_{151B.3.b}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(b) the speed limit for the length of road, other than indicated by
+a variable illuminated message sign, is less than 90km/h; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% the speed limit for the length of road %%
+    speedLimitSign_On_Road
+  AND
+    %% other than indicated by a variable illuminated message sign %%
+    speedLimit_IsIndicatedBy_illuminatedMessageSign
+  AND
+    applicableSpeedLimit_LessThan_90kmsPerHour
+  AND
+    %% the speed is less than 90km/h %%
+    rider_isRidingAtSpeedLessThan_90KilometresPerHour
+THEN [Count-As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B.3.c}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(b) the rider rides at a speed of more than 30km/h; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Rides_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% the rider rides at a speed of more than 30km/h %%
+    rider_isRidingAtSpeedGreaterThan_30kilometresPerHour
+THEN [Count_As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B.3.d}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(b) the length of road is in a tunnel; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Of_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% the length of road is in a tunnel %%
+    lengthOFRoad_isTunnel
+THEN [Count_As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B.3.e}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(b) there are roadworks on the length of road; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Of_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% there are roadworks on the length of road %%
+    roadworks_OnThelengthOfRoad
+THEN [Count-As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B.3.f}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(b) the rider rides on any unsealed part of the road; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Of_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% the rider rides on any unsealed part of the road %%
+    rider_RidesOnThe_unsealedPartOfTheRoad
+THEN [Count-As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B.3.g}
+
+%% (3) For subsection (2), if 1 or more of the following circumstances
+apply while a rider is edge filtering along a length of road, the rider
+is taken to have unlawfully edge filtered along the length of road—
+(b) it is not safe to edge filter; %%
+
+IF
+    %% The rider of a motorbike %%
+    rider_Of_motorbike
+  AND
+    %% a rider is edge filtering along a length of road %%
+    rider_EdgeFilteringAlong_lenghtOfRoad
+  AND
+    %% it is not safe to edge filter %%
+    itIsNotSafe_toEdgeFilter
+THEN [Count-As]
+    %% the rider is taken to have unlawfully edge filtered along the length of road %%
+    rider_UnlawfullyEdgeFilterAlong_lenghtOfRoad
+
+---
+
+r_{151B_4_a_i}
+
+IF
+    %% means the part of the road that is %%
+    PartOfTheRoad
+  AND
+    %% to the left of the left edge line on the road %%
+    leftOfThe_LeftEdgeLineOnThe_road
+THEN [Count_As]
+    %% edge, of a length of road %%
+    EdgeOfALengthOfTheRoad
+
+---
+
+s_{151B.4.a.ii}
+
+IF
+    %% means the part of the road that is %%
+    PartOfTheRoad
+  AND
+    %% to the right of the right edge line on the road %%
+    rightOfThe_RightEdgeLineOnThe_road
+THEN [Count_As]
+    %% edge, of a length of road %%
+    EdgeOfALengthOfTheRoad
+---
+
+s_{151B.4.b}
+
+IF
+    %% includes an emergency stopping lane along the road %%
+    EmergencyStoppingLengthOfTheRoad
+THEN [Count_As]
+    %% edge, of a length of road %%
+    EdgeOfALengthOfTheRoad
+
+---  %% 49 %%
+
+%% Rule 142: No overtaking to the right of a vehicle turning right etc. %%
+
+r_{OvertakeRight}
+
+IF
+  OvertakeRight
+THEN [Count-As]
+  Overtake
+
+---
+
+r_{142.1}
+
+IF
+  \emptyset
+THEN [P]
+  %% overtake to the right of a vehicle %%
+  driver_OvertakeToTheRightOf_vehicle
+
+OR
+
+IF
+  \emptyset
+THEN [OBL]
+  %% must not overtake to the right of a vehicle %%
+  NEG (driver_OvertakeToTheRightOf_vehicle)
+
+---
+
+r_{142.1.a.i}
+
+IF
+    %% turning right %%
+    vehicle_IsTurningRight
+THEN [OBL]
+    %% must not overtake to the right of a vehicle %%
+    NEG (driver_OvertakeToTheRightOf_vehicle) \OTIMES max_20PenaltyUnits
+
+r_{142.1.a.i} > r_{142.1}
+
+---
+
+r_{142.1.a.ii}
+
+IF
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+    %% must not overtake to the right of a vehicle %%
+    NEG (driver_OvertakeToTheRightOf_vehicle)
+
+r_{142.1.a.ii} > r_{142.1}
+
+---
+
+r_{142.1.a.iii}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+THEN [OBL]
+    %% must not overtake to the right of a vehicle %%
+    NEG (driver_OvertakeToTheRightOf_vehicle) \OTIMES max_20PenaltyUnits
+
+r_{142.1.a.iii} > r_{142.1}
+
+---
+
+r_{142.1.a.iv}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+    %% must not overtake to the right of a vehicle %%
+    NEG (driver_OvertakeToTheRightOf_vehicle)
+
+r_{142.1.a.iv} > r_{142.1}
+
+---
+
+r_{142.1.b}
+
+IF
+    %% giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+    %% must not overtake to the right of a vehicle %%
+    NEG (driver_OvertakeToTheRightOf_vehicle)
+
+--- %% 54 %%
+
+## Rule 143: Passing or overtaking a vehicle displaying a do not overtake turning vehicle sign ##
+
+r_{143.1.1.a}
+
+IF
+    %% displaying a do not overtake turning vehicle sign %%
+    vehicle_Display_doNotOvertakeTurningVehicleSign
+  AND
+    %% if the vehicle is turning left %%
+    vehicle_IsTurningLeft
+  AND
+    %% is giving a left change of direction signal %%
+    vehicle_IsGivingLeftChangeOfDirectionSignal
+THEN [OBL]
+    %% A driver must not drive past to the left of a vehicle %%
+    NEG (driver_DrivePastToTheLeftOf_vehicle)
+
+---
+
+r_{143.1.2.a}
+
+IF
+    %% displaying a do not overtake turning vehicle sign %%
+    vehicle_Display_doNotOvertakeTurningVehicleSign
+  AND
+    %% if the vehicle is turning left %%
+    vehicle_IsTurningLeft
+  AND
+    %% is giving a left change of direction signal %%
+    vehicle_IsGivingLeftChangeOfDirectionSignal
+THEN [OBL]
+    %% A driver must not overtake to the left of a vehicle %%
+    NEG (driver_OvertakeToTheLeftOf_vehicle)
+
+---
+
+r_{143.1.1.b.i.1}
+
+IF
+    %% the driver is driving on a multi-lane road %%
+    driver_IsDrivingOn_MultiLaneRoad
+  AND
+    %% it is safe to pass in a marked lane %%
+    IsSafeToPassIn_markedLane
+  AND
+    %% in a marked lane to the left of the vehicle %%
+    MarkedLane_IsToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.i.1} > r_{143.1.1.a}
+
+---
+
+r_{143.1.1.b.i.2}
+
+IF
+    %% the driver is driving on a multi-lane road %%
+    driver_IsDrivingOn_multiLaneRoad
+  AND
+    %% it is safe to overtake in a marked lane %%
+    IsSafeToOvertakeIn_MarkedLane
+  AND
+    %% in a marked lane to the left of the vehicle %%
+    MarkedLane_IsToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.i.2} > r_{143.1.1.a}
+
+---
+
+r_{143.1.2.b.i.1}
+
+IF
+    %% the driver is driving on a multi-lane road %%
+    driver_IsDrivingOn_multiLaneRoad
+  AND
+    %% it is safe to pass in a marked lane %%
+    IsSafeToPassIn_MarkedLane
+  AND
+    %% in a marked lane to the left of the vehicle %%
+    MarkedLane_IsToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.i.1} > r_{143.1.2.a}
+
+---
+
+r_{143.1.2.b.i.2}
+
+IF
+    %% the driver is driving on a multi-lane road %%
+    driver_IsDrivingOn_multiLaneRoad
+  AND
+    %% it is safe to overtake %%
+    IsSafeToOvertakeIn_MarkedLane
+  AND
+    %% in a marked lane to the left of the vehicle %%
+    MarkedLane_IsToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.i.2} > r_{143.1.2.a}
+
+---
+
+r_{143.1.1.b.ii.1}
+
+IF
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to pass to the left of the vehicle %%
+    IsSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.ii.1} > r_{143.1.1.a}
+
+---
+
+r_{143.1.1.b.ii.2}
+
+IF
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeft_vehicle
+
+r_{143.1.1.b.ii.2} > r_{143.1.1.a}
+
+---
+
+r_{143_1_1_b_ii_3}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to pass to the left of the vehicle %%
+    IsSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.ii.3} > r_{143.1.1.a}
+
+---
+
+r_{143.1.1.b.ii.4}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to overtake to the left of the vehicle
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeft_vehicle
+
+r_{143.1.1.b.ii.4} > r_{143_1_1.a}
+
+---
+
+r_{143.1.2.b.ii.1}
+
+IF
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to pass to the left of the vehicle %%
+    IsSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.ii.1} > r_{143.1.2.a}
+
+---
+
+r_{143.1.2.b.ii.2}
+
+IF
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.ii.2} > r_{143.1.2.a}
+
+---
+
+r_{143.1.2.b.ii.3}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to pass to the left of the vehicle %%
+    IsSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.ii.3} > r_{143.1.2.a}
+
+---
+
+r_{143.1.2.b.ii.4}
+
+IF
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.ii.4} > r_{143.1.2.a}
+
+---
+
+r_{143.1.1.b.iii.1}
+
+IF
+    %% the vehicle is stationary %%
+    vehicle_IsStationary
+  AND
+    %% it is safe to pass to the left of the vehicle %%
+    IsSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.iii.1} > r_{143.1.1.a}
+
+---
+
+r_{143_1_1_b_iii_2}
+
+IF
+    %% the vehicle is stationary %%
+    vehicle_IsStationary
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.iii.2} > r_{143.1.1.a}
+
+---
+
+r_{143.1.2.b.iii.1}
+
+IF
+    %% the vehicle is stationary %%
+    vehicle_IsStationary
+  AND
+    %% it is safe to pass to the left of the vehicle %%
+    IsSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.iii.1} > r_{143.1.2.a}
+
+---
+
+r_{143.1.2.b.iii.2}
+
+IF
+    %% the vehicle is stationary %%
+    vehicle_IsStationary
+  AND
+    %% it is safe to overtake to the left of the vehicle %%
+    IsSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.iii.2} > r_{143.1.2.a}
+
+---
+
+r_{143.1.1.b.iv.1}
+
+IF
+    %% it is otherwise safe to pass to the left of the vehicle %%
+    IsOtherwiseSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.iv.1} > r_{143.1.1.a}
+
+---
+
+r_{143.1.1.b.iv.2}
+
+IF
+    %% it is otherwise overtake to the left of the vehicle %%
+    IsOtherwiseSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive past to the left of a vehicle %%
+    driver_DrivePastToTheLeftOf_vehicle
+
+r_{143.1.1.b.iv.2} > r_{143.1.1.a}
+
+---
+
+r_{143.1.2.b.iv.1}
+
+IF
+    %% it is otherwise safe to pass to the left of the vehicle %%
+    IsOtherwiseSafeToPassToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.iv.1} > r_{143.1.2.a}
+
+---
+
+r_{143.1.2.b.iv.2}
+
+IF
+    %% it is otherwise overtake to the left of the vehicle %%
+    IsOtherwiseSafeToOvertakeToTheLeftOf_vehicle
+THEN [P]
+    %% A driver drive overtake to the left of a vehicle %%
+    driver_OvertakeToTheLeftOf_vehicle
+
+r_{143.1.2.b.iv.2} > r_{143.1.2.a}
+
+---
+
+r_{143.2.i}
+
+IF
+    \emptyset
+  AND
+    %% vehicle displaying a do not overtake turning vehicle sign %%
+    vehicle_Display_doNotOvertakeTurningVehicleSign
+  AND
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% vehicle is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+    NEG (driver_DrivePastToTheRightOf_vehicle) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{143.2.ii}
+
+IF
+    \emptyset
+  AND
+    %% vehicle displaying a do not overtake turning vehicle sign %%
+    vehicle_Display_doNotOvertakeTurningVehicleSign
+  AND
+    %% the vehicle is turning right %%
+    vehicle_IsTurningRight
+  AND
+    %% vehicle is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+  NEG (driver_OvertakeToTheRightOf_vehicle) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{143.2.iii}
+
+IF
+    \emptyset
+  AND
+    %%vehicle displaying a do not overtake turning vehicle sign %%
+    vehicle_Display_doNotOvertakeTurningVehicleSign
+  AND
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% vehicle is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+    NEG (driver_DrivePastToTheRightOf_vehicle)
+
+--- %% 81 %%
+
+r_{143.2.iv}
+
+IF
+    \emptyset
+  AND
+    %% vehicle displaying a do not overtake turning vehicle sign %%
+    vehicle_Display_doNotOvertakeTurningVehicleSign
+  AND
+    %% making a U-turn %%
+    vehicle_IsMakingUturn
+  AND
+    %% from the centre of the road %%
+    vehicle_IsOn_centreOfRoad
+  AND
+    %% vehicle is giving a right change of direction signal %%
+    vehicle_IsGivingRightChangeOfDirectionSignal
+THEN [OBL]
+    NEG (driver_OvertakeToTheRightOf_vehicle)
+
+---
+
+r_{143.2.exception.i}
+
+IF
+  IsSafeToPassToTheRightOf_vehicle
+THEN [P]
+  driver_DrivePastToTheRightOf_vehicle
+
+
+r_{143.2.exception.i} > r_{143.2.i}
+r_{143.2.exception.i} > r_{143.2.iii}
+
+---
+
+r_{143.2.exception.ii}
+
+IF
+  IsSafeToPassToTheRightOf_vehicle
+THEN [P]
+  driver_OvertakeToTheRightOf_vehicle
+
+r_{143.2.exception.ii} > r_{143.2.ii}
+r_{143.2.exception.ii} > r_{143.2.iv}
+
+--- %% 84 %%
+
+%% Rule 144: Keeping a safe distance when overtaking %%
+
+r_{144.a.1}
+
+IF
+  %% a driver overtaking a vehicle %%
+  driver_IsOvertaking_vehicle
+THEN [OBL]
+  %% must pass the vehicle at a sufficient distance
+  to avoid a collision with the vehicle %%
+  driver_PassAtSufficientDistanceToAvoidCollisionWith_vehicle \OTIMES max_20PenaltyUnits
+
+---
+
+r_{144.a.2}
+
+IF
+  %% a driver overtaking a vehicle %%
+  driver_IsOvertaking_vehicle
+THEN [OBL]
+  %% must pass the vehicle at a sufficient distance to
+  obstructing the path of the vehicle %%
+  driver_PassAtSufficientDistanceToAvoidObstructingThePathOf_vehicle \OTIMES max_20PenaltyUnits
+
+--- %% 86 %%
+
+r_{144.b.1.1}
+
+IF
+    %% a driver overtaking a vehicle %%
+    driver_IsOvertaking_vehicle
+  AND
+    %% where the vehicle is travelling %%
+    vehicle_IsTravellingOn_markedLane
+  AND
+    %% until the driver is a sufficient distance past the vehicle
+    to avoid a collision with the vehicle %%
+    NEG (driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle)
+THEN [OBL]
+    %% must not return to the marked lane %%
+    NEG (driver_ReturnTo_markedLane) \OTIMS max_20PenaltyUnits
+
+---
+
+r_{144.b.1.2}
+
+IF
+    %% a driver overtaking a vehicle %%
+    driver_IsOvertaking_vehicle
+  AND
+    %% where the vehicle is travelling %%
+    vehicle_IsTravellingOn_markedLane
+  AND
+    %% until the driver is a sufficient distance past the vehicle
+    to obstructing the path of the vehicle %%
+    NEG (driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle)
+THEN [OBL]
+    %% must not return to the marked lane %%
+    NEG (driver_ReturnTo_markedLane) \OTIMS max_20PenaltyUnits
+
+r_{144.b.2.1}
+
+IF
+    %% a driver overtaking a vehicle %%
+    driver_IsOvertaking_vehicle
+  AND
+    %% where the vehicle is travelling %%
+    vehicle_IsTravellingOn_lineOfTraffic
+  AND
+    %% until the driver is a sufficient distance past the vehicle
+    to avoid a collision with the vehicle %%
+    NEG (driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle)
+THEN [OBL]
+    %% must not return to the line of traffic %%
+    NEG (driver_ReturnTo_markedLane) \OTIMS max_20PenaltyUnits
+
+
+r_{144.b.2.2}
+
+IF
+    %% a driver overtaking a vehicle %%
+    driver_IsOvertaking_vehicle
+  AND
+    %% where the vehicle is travelling %%
+    vehicle_IsTravellingOn_lineOfTraffic
+  AND
+    %% until the driver is a sufficient distance past the vehicle
+    to obstructing the path of the vehicle %%
+    NEG (driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle)
+THEN [OBL]
+    %% must not return to the marked lane %%
+    NEG (driver_ReturnTo_markedLane) \OTIMS max_20PenaltyUnits
+
+--- %% 90 %%
+
+## Rule 144A: Keeping a safe lateral distance when passing bicycle rider
+
+r_{144A}
+
+IF
+    %% when passing bicycle rider %%
+    rider_Passing_bicycle
+THEN [OBL]
+    %% Keeping a safe lateral distance %%
+    rider_KeepingASafeLateralDistance_bicycle \OTIMES max_20PenaltyUnits
+
+---
+
+r_{144A.1}
+
+IF
+    %% The driver of a motor vehicle %%
+    driver_Of_motorVehicle
+  AND
+    %% the rider of a bicycle %%
+    rider_Of_bicycle
+  AND
+    %% passing the rider %%
+    driver_Passing_rider
+  AND
+    %% that is travelling in the same direction %%
+    driver_TravellingInSameDirectionOf_rider
+  AND
+    %% passing the rider %%
+    driver_IsPassing_bicycle
+THEN [OBL]
+    %% the driver must pass the bicycle at a sufficient distance from the bicycle %%
+    driver_IsAtASufficientDistanceFrom_bicycle
+
+r_{144A.1} > r_{144A}
+
+--- %% 92 %%
+
+%% Rule 144A-2 A sufficient distance from the bicycle is
+(a) if the applicable speed limit is not more than 60km/h—a
+lateral distance from the bicycle of at least 1m; or
+(b) if the applicable speed limit is more than 60km/h—a
+lateral distance from the bicycle of at least 1.5m. %%
+
+r_{144A.2.a}
+
+IF
+    applicableSpeedLimit_LessEqualThan_60kmsPerHour
+  AND
+    vehicle_HasLateralDistanceGreaterEqualThan1MetreFrom_bicycle
+THEN [Count-As]
+    driver_IsAtASufficientDistanceFrom_bicycle
+
+---
+
+r_{144A.2.b}
+
+IF
+    applicableSpeedLimit_GreaterThan_60kmsPerHour
+  AND
+    vehicle_HasLateralDistanceGreaterEqualThan1.5MetreFrom_bicycle
+THEN [Count-As]
+    driver_IsAtASufficientDistanceFrom_bicycle
+
+---
+
+%% Rule 144A-3: ) For subsection (2), the lateral distance is the distance
+between the following points
+
+(3) For subsection (2), the lateral distance is the distance between the following points—
+(a) the furthermost point to the left on the driver’s vehicle or any projection
+from the vehicle (whether or not attached to the vehicle);
+(b) the furthermost point to the right on the bicycle, any bicycle trailer
+towed by the bicycle, the rider or any passenger in or on the trailer. %%
+
+r_{144A.3.a.i}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% left on the driver’s vehicle %%
+    LeftOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the left on the driver’s vehicle %%
+    furtherMost_Point_toTheLeftOnTheDriver'sVehicle
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+---
+
+r_{144A_3_a_ii}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    theVehicle
+  AND
+    %% any projection from the vehicle %%
+    projection_From_theVehicle
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+---
+
+r_{144A_3_b_i}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% right on the driver’s vehicle %%
+    RightOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the right on the bicycle %%
+    furthermost_Point_TotheRightOnthebicycle
+  AND
+    %% any bicycle trailer towed by the bicycle, the rider %%
+    bicycle_Towed_byTheBicycleRider
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+---
+
+r_{144A_3_b_ii}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% right on the driver’s vehicle %%
+    RightOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the right on the bicycle %%
+    furthermost_Point_TotheRightOnthebicycle
+  AND
+    %% any bicycle trailer towed by the bicycle, the rider %%
+    bicycle_Towed_byTheBicycleRider
+  AND
+    %% on the trailer %%
+    the_Rider_onTheTrailer
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+---
+
+r_{144A_3_b_iii}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% right on the driver’s vehicle %%
+    RightOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the right on the bicycle %%
+    furthermost_Point_TotheRightOnthebicycle
+  AND
+    %% any bicycle trailer towed by the bicycle, the rider %%
+    bicycle_Towed_byTheBicycleRider
+  AND
+    %% in the trailer %%
+    the_Rider_inTheTrailer
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+---
+
+r_{144A_3_b_iv}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% right on the driver’s vehicle %%
+    RightOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the right on the bicycle %%
+    furthermost_Point_TotheRightOnthebicycle
+  AND
+    %% any bicycle trailer towed by the bicycle, any passenger %%
+    bicycle_Towed_byThePassenger
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+---
+
+r_{144A_3_b_v}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% right on the driver’s vehicle %%
+    RightOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the right on the bicycle %%
+    furthermost_Point_TotheRightOnthebicycle
+  AND
+    %% any bicycle trailer towed by the bicycle, any passenger %%
+    bicycle_Towed_byThePassenger
+  AND
+    %% on the trailer %%
+    the_Rider_onTheTrailer
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+---
+
+r_{144A_3_b_vi}
+
+IF
+    %% a lateral distance from the bicycle %%
+    vehicle_LateralDistance_fromTheBicycle
+  AND
+    %% distance between the following points %%
+    isLateral_Distance_between
+  AND
+    %% right on the driver’s vehicle %%
+    RightOnTheDriver'sVehicle
+  AND
+    %% the furthermost point to the right on the bicycle %%
+    furthermost_Point_TotheRightOnthebicycle
+  AND
+    %% any bicycle trailer towed by the bicycle, any passenger %%
+    bicycle_Towed_byThePassenger
+  AND
+    %% in the trailer %%
+    the_Rider_inTheTrailer
+THEN [Count-As]
+    %% A sufficient distance from the bicycle
+    aSufficient_Distance_fromTheBicycle
+
+--- %% 102 %%
+
+%% Rule 145 Driver being overtaken not to increase speed
+
+r_{145.a.i}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing a dividing line %%
+    driver_IsOvertakingByCrossingADividingLine_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% until the first driver—has passed the other driver %%
+    NEG (driver_HasPassed_anotherDriver)
+THEN [OBL]
+    %%the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.a.ii}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing to the right of the centre of the road %%
+    driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% until the first driver—has passed the other driver %%
+    NEG (driver_HasPassed_anotherDriver)
+THEN [OBL]
+    %% the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.b.i}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing a dividing line %%
+    driver_IsOvertakingByCrossingADividingLine_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% has returned to the marked lane where the other driver is driving :
+    which means it is driving in marked lane %%
+    anotherDriver_IsDrivingOn_markedLane
+  AND
+    %% until the first driver—has returned to the marked lane %%
+    NEG (driver_HasReturnedTo_markedLane)
+THEN [OBL]
+    %%the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.b.ii}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing to the right of the centre of the road %%
+    driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% has returned to the marked lane where the other driver is driving :
+    which means it is driving in marked lane %%
+    anotherDriver_IsDrivingOn_markedLane
+  AND
+    %% until the first driver—has returned to the marked lane %%
+    NEG (driver_HasReturnedTo_markedLane)
+THEN [OBL]
+    %% the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.b.iii}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing a dividing line %%
+    driver_IsOvertakingByCrossingADividingLine_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% has returned to the line of traffic where the other driver is driving :
+    which means it is driving in marked lane %%
+    anotherDriver_IsDrivingOn_lineOfTraffic
+  AND
+    %% until the first driver—has returned to the line of traffic %%
+    NEG (driver_HasReturnedTo_lineOfTraffic)
+THEN [OBL]
+    %% the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.b.iv}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing to the right of the centre of the road %%
+    driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% has returned to the line of traffic where the other driver is driving :
+    which means it is driving in marked lane %%
+    anotherDriver_IsDrivingOn_lineOfTraffic
+  AND
+    %% until the first driver—has returned to the line of traffic %%
+    NEG (driver_HasReturnedTo_lineOfTraffic)
+THEN [OBL]
+    %% the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.c.i}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing a dividing line %%
+    driver_IsOvertakingByCrossingADividingLine_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% is a sufficient distance in front of the other driver to avoid a collision %%
+    NEG (driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver)
+THEN [OBL]
+    %% the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+---
+
+r_{145.c.ii}
+
+IF
+    %% a driver is overtaking another driver on a
+    two-way road by crossing to the right of the centre of the road %%
+    driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver
+  AND
+    %% driver on a two-way road %%
+    driver_isDrivingOn_twoWayRoad
+  AND
+    %% is a sufficient distance in front of the other driver to avoid a collision %%
+    NEG (driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver)
+THEN [OBL]
+    %% the other driver must not increase the speed at which the driver is
+    driving until the first driver %%
+    NEG (anotherDriver_IncreaseTheSpeed) \OTIMES max_20PenaltyUnits
+
+--- %% 110 %%
+***
+---
