@@ -1,0 +1,1 @@
+SELECT ?is_continouscenterline WHERE {ae:time ae:is_continouscenterline ?is_continouscenterline.}

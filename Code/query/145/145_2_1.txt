@@ -1,0 +1,1 @@
+SELECT ?is_twowayroad WHERE {ae:time ae:is_twowayroad ?is_twowayroad.}
