@@ -1,0 +1,1 @@
+SELECT ?is_intersection WHERE {ae:time ae:is_intersection ?is_intersection.}

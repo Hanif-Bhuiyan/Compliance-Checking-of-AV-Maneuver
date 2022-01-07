@@ -1,0 +1,1 @@
+SELECT ?is_goingright WHERE {ab:vehicle ab:is_goingright ?is_goingright.}
