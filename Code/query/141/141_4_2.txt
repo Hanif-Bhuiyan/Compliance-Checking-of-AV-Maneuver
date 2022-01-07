@@ -1,0 +1,1 @@
+SELECT ?is_lanenumber WHERE {ab:vehicle ab:is_lanenumber ?is_lanenumber.}

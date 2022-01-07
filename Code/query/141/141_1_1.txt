@@ -1,0 +1,1 @@
+SELECT ?vehicle WHERE {ab:time ab:driving ?vehicle.}

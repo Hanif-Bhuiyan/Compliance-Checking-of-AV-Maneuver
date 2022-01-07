@@ -1,0 +1,1 @@
+SELECT ?is_brokencenterline WHERE {ae:time ae:is_brokencenterline ?is_brokencenterline.}
