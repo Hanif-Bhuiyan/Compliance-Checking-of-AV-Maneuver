@@ -1,12 +1,12 @@
 
-1. Install Python 3.8.2
-2. Install any IDE. Pycharm (I recommend to use) is used for this project
-3. For the project configure all the require libraries. If you use Pycharm then it will suggest. 
-4. Download the Project
+1. Download the Project
+2. Install Python 3.8.2
+3. Install any IDE. Pycharm (I recommend to use) is used for this project
+4. For the project configure all the require libraries. If you use Pycharm then it will suggest.  
 5. Install and configure Owlready library with the project. (See Owlready 2 manual)
 6. Download the Experiment Data (Behaviour and Environment .xlsx files)
 5. Select which one (exp no.) you want to experiment
-	a. Fetch the behaviour (outpu_b) and environment (output_e)
+	a. Fetch the behaviour and environment .xlsx file from the experiment data folder.
 	b. Place these files in the folder where is the main file
 	c. Run the main file
 	d. Select from which timestamp to which tiemstamp you want to validate
