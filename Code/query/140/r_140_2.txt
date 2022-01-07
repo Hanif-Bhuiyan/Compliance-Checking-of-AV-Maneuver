@@ -1,0 +1,1 @@
+SELECT ?total_lane WHERE { as:road as:total_lane ?total_lane.}
