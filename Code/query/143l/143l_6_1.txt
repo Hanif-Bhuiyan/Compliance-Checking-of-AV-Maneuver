@@ -1,0 +1,1 @@
+SELECT ?is_donotovertakesign WHERE {ab:vehicle ab:is_donotovertakesign ?is_donotovertakesign.}
