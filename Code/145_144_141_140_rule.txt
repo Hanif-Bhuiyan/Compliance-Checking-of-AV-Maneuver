@@ -1,0 +1,128 @@
+Atom driver_IsOvertaking_vehicle "Overtaking Target Vehicle"
+Atom driver_PassAtSufficientDistanceToAvoidCollisionWith_vehicle "Overtaking Target Vehicle"
+Atom driver_PassAtSufficientDistanceToAvoidObstructingThePathOf_vehicle "Overtaking Target Vehicle"
+Atom driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle "Overtaking Target Vehicle"
+Atom driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle "Overtaking target vehicle"
+Atom vehicle_IsTravellingOn_markedLane "Road has lane marking"
+Atom vehicle_IsTravellingOn_lineOfTraffic "Road has lane marking"
+Atom driver_ReturnTo_markedLane "Road has lane marking"
+
+Atom driver_IsOvertakingByCrossingADividingLine_anotherDriver "Overtaking Target Vehicle"
+Atom driver_isDrivingOn_twoWayRoad "Both way road"
+Atom driver_HasPassed_anotherDriver "This always true"
+Atom anotherDriver_IncreaseTheSpeed "This always true"
+Atom driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver "Overtaking Target Vehicle"
+Atom anotherDriver_IsDrivingOn_markedLane "Road has lane marking"
+Atom driver_HasReturnedTo_markedLane "Road has lane marking"
+Atom anotherDriver_IsDrivingOn_lineOfTraffic "Road has lane marking"
+Atom driver_HasReturnedTo_lineOfTraffic "Road has lane marking"
+Atom driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver "Overtaking Target Vehicle"
+
+Atom driver_OvertakeToTheLeftOf_vehicle "Overtake Left"
+Atom driver_Of_bicyle "Bicycle Rider"
+Atom driver_IsDrivingOn_MultiLaneRoad "Driver driving in Multi-Lane"
+Atom vehicle_CanBeSafelyOvertakenIn_markedLane "the vehicle can be safely overtaken in a marked lane"
+Atom markedLane_IsToTheLeftOf_vehicle "marked lane to the left of the vehicle"
+Atom vehicle_IsTurningRight "the vehicle is turning right"
+Atom vehicle_IsGivingRightChangeOfDirectionSignal "the vehicle is giving a right change of direction signal"
+Atom IsSafeToOvertakeToTheLeftOf_vehicle "it is safe to overtake to the left of the vehicle"
+Atom vehicle_IsMakingUturn "making a U-turn"
+Atom vehicle_IsOn_centreOfRoad "from the centre of the road"
+Atom vehicle_IsStationary "the vehicle is stationary"
+Atom driver_IsLawfullyLaneFiltering "the driver is lane filtering in compliance with section 151A"
+Atom driver_IsLawfullyEdgeFiltering "the driver is edge filtering in compliance with section 151B"
+
+
+Atom driver_HasClearViewOf_approachingTraffic "whatever"
+Atom driver_CanSafelyOvertake_vehicle "whatever"
+Atom driver_Overtake_vehicle "whatever"
+
+
+
+r144_a_1:driver_IsOvertaking_vehicle => [O] driver_PassAtSufficientDistanceToAvoidCollisionWith_vehicle
+
+r144_a_2:driver_IsOvertaking_vehicle => [O] driver_PassAtSufficientDistanceToAvoidObstructingThePathOf_vehicle
+
+r144_b_1_1:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_markedLane 
+& ~driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle => [F] driver_ReturnTo_markedLane
+
+r144_b_1_2:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_markedLane 
+& ~driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle => [F] driver_ReturnTo_markedLane
+
+r144_b_2_1:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_lineOfTraffic 
+& ~driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle => [F] driver_ReturnTo_markedLane
+
+r144_b_2_2:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_lineOfTraffic 
+& ~driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle => [F] driver_ReturnTo_markedLane
+
+
+
+r145_a_1: driver_IsOvertakingByCrossingADividingLine_anotherDriver & driver_isDrivingOn_twoWayRoad 
+& ~driver_HasPassed_anotherDriver => [F] anotherDriver_IncreaseTheSpeed
+
+r145_a_2: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver & driver_isDrivingOn_twoWayRoad 
+& ~driver_HasPassed_anotherDriver => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_1: driver_IsOvertakingByCrossingADividingLine_anotherDriver & driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_markedLane
+& ~driver_HasReturnedTo_markedLane => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_2: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_markedLane 
+& ~driver_HasReturnedTo_markedLane => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_3: driver_IsOvertakingByCrossingADividingLine_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_lineOfTraffic 
+& ~driver_HasReturnedTo_lineOfTraffic => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_4: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_lineOfTraffic 
+& ~driver_HasReturnedTo_lineOfTraffic => [F] anotherDriver_IncreaseTheSpeed
+
+r145_c_1: driver_IsOvertakingByCrossingADividingLine_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & ~driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver 
+=> [F] anotherDriver_IncreaseTheSpeed
+
+r145_c_2: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & ~driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver 
+=> [F] anotherDriver_IncreaseTheSpeed
+
+
+r141: [F] driver_Overtake_vehicle => [F] driver_OvertakeToTheLeftOf_vehicle
+
+r141_bicycle: driver_Of_bicyle => [P] driver_OvertakeToTheLeftOf_vehicle
+
+r141_a:driver_IsDrivingOn_MultiLaneRoad & vehicle_CanBeSafelyOvertakenIn_markedLane 
+       & markedLane_IsToTheLeftOf_vehicle & [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheLeftOf_vehicle
+
+r141_b_1: vehicle_IsTurningRight & vehicle_IsGivingRightChangeOfDirectionSignal 
+          & IsSafeToOvertakeToTheLeftOf_vehicle & [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheLeftOf_vehicle
+       
+r141_b_2: vehicle_IsMakingUturn & vehicle_IsOn_centreOfRoad & vehicle_IsGivingRightChangeOfDirectionSignal 
+          & IsSafeToOvertakeToTheLeftOf_vehicle & [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheLeftOf_vehicle
+
+r141_c: vehicle_IsStationary & vehicle_CanBeSafelyOvertakenIn_markedLane & [P] driver_Overtake_vehicle
+        => [P] driver_OvertakeToTheLeftOf_vehicle
+
+r141_d_a: driver_IsLawfullyLaneFiltering & [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheLeftOf_vehicle
+
+r141_d_b: driver_IsLawfullyEdgeFiltering & [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheLeftOf_vehicle
+
+
+r141_bicycle >> r141
+r141_a >> r141
+r141_b_1 >> r141
+r141_b_2 >> r141
+r141_c >> r141
+r141_d_a >> r141
+r141_d_b >> r141
+
+
+r140: => [F] driver_Overtake_vehicle
+r140exc: driver_HasClearViewOf_approachingTraffic & driver_CanSafelyOvertake_vehicle
+    => [P] driver_Overtake_vehicle
+
+r140exc >> r140
+
+
+
+

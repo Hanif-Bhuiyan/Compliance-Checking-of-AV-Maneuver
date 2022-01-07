@@ -1,0 +1,160 @@
+Atom driver_IsOvertaking_vehicle "Overtaking Target Vehicle"
+Atom driver_PassAtSufficientDistanceToAvoidCollisionWith_vehicle "Overtaking Target Vehicle"
+Atom driver_PassAtSufficientDistanceToAvoidObstructingThePathOf_vehicle "Overtaking Target Vehicle"
+Atom driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle "Overtaking Target Vehicle"
+Atom driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle "Overtaking target vehicle"
+Atom vehicle_IsTravellingOn_markedLane "Road has lane marking"
+Atom vehicle_IsTravellingOn_lineOfTraffic "Road has lane marking"
+Atom driver_ReturnTo_markedLane "Road has lane marking"
+
+Atom driver_IsOvertakingByCrossingADividingLine_anotherDriver "Overtaking Target Vehicle"
+Atom driver_isDrivingOn_twoWayRoad "Both way road"
+Atom driver_HasPassed_anotherDriver "This always true"
+Atom anotherDriver_IncreaseTheSpeed "This always true"
+Atom driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver "Overtaking Target Vehicle"
+Atom anotherDriver_IsDrivingOn_markedLane "Road has lane marking"
+Atom driver_HasReturnedTo_markedLane "Road has lane marking"
+Atom anotherDriver_IsDrivingOn_lineOfTraffic "Road has lane marking"
+Atom driver_HasReturnedTo_lineOfTraffic "Road has lane marking"
+Atom driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver "Overtaking Target Vehicle"
+
+Atom driver_OvertakeToTheRightOf_vehicle
+Atom vehicle_IsTurningRight
+Atom vehicle_IsGivingRightChangeOfDirectionSignal
+Atom vehicle_IsMakingUturn
+Atom vehicle_IsOn_centreOfRoad
+
+
+Atom vehicle_IsTurningRight
+Atom vehicle_IsMakingUturn
+Atom vehicle_IsOn_centreOfRoad
+Atom vehicle_IsStationary
+Atom driver_IsDrivingOn_MultiLaneRoad
+Atom vehicle_IsGivingRightChangeOfDirectionSignal
+Atom vehicle_Display_doNotOvertakeTurningVehicleSign
+Atom IsSafeToPassIn_MarkedLane
+Atom IsSafeToOvertakeIn_MarkedLane
+Atom IsSafeToPassToTheRightOf_vehicle
+Atom driver_DrivePastToTheRightOf_vehicle
+Atom driver_OvertakeToTheRightOf_vehicle
+
+
+Atom driver_HasClearViewOf_approachingTraffic "whatever"
+Atom driver_CanSafelyOvertake_vehicle "whatever"
+Atom driver_Overtake_vehicle "whatever"
+
+
+
+r144_a_1:driver_IsOvertaking_vehicle => [O] driver_PassAtSufficientDistanceToAvoidCollisionWith_vehicle
+
+r144_a_2:driver_IsOvertaking_vehicle => [O] driver_PassAtSufficientDistanceToAvoidObstructingThePathOf_vehicle
+
+r144_b_1_1:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_markedLane 
+& ~driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle => [F] driver_ReturnTo_markedLane
+
+r144_b_1_2:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_markedLane 
+& ~driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle => [F] driver_ReturnTo_markedLane
+
+r144_b_2_1:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_lineOfTraffic 
+& ~driver_IsAtSufficientDistancePastToAvoidCollisionWith_vehicle => [F] driver_ReturnTo_markedLane
+
+r144_b_2_2:driver_IsOvertaking_vehicle & vehicle_IsTravellingOn_lineOfTraffic 
+& ~driver_IsAtSufficientDistancePastToAvoidObstructingThePathOf_vehicle => [F] driver_ReturnTo_markedLane
+
+
+
+r145_a_1: driver_IsOvertakingByCrossingADividingLine_anotherDriver & driver_isDrivingOn_twoWayRoad 
+& ~driver_HasPassed_anotherDriver => [F] anotherDriver_IncreaseTheSpeed
+
+r145_a_2: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver & driver_isDrivingOn_twoWayRoad 
+& ~driver_HasPassed_anotherDriver => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_1: driver_IsOvertakingByCrossingADividingLine_anotherDriver & driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_markedLane
+& ~driver_HasReturnedTo_markedLane => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_2: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_markedLane 
+& ~driver_HasReturnedTo_markedLane => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_3: driver_IsOvertakingByCrossingADividingLine_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_lineOfTraffic 
+& ~driver_HasReturnedTo_lineOfTraffic => [F] anotherDriver_IncreaseTheSpeed
+
+r145_b_4: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & anotherDriver_IsDrivingOn_lineOfTraffic 
+& ~driver_HasReturnedTo_lineOfTraffic => [F] anotherDriver_IncreaseTheSpeed
+
+r145_c_1: driver_IsOvertakingByCrossingADividingLine_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & ~driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver 
+=> [F] anotherDriver_IncreaseTheSpeed
+
+r145_c_2: driver_IsOvertakingByCrossingToTheRightOfTheCentreOfTheRoad_anotherDriver 
+& driver_isDrivingOn_twoWayRoad & ~driver_IsAtASufficientDistanceToAvoidACollisionInFrontOf_anotherDriver 
+=> [F] anotherDriver_IncreaseTheSpeed
+
+
+r143_1_1:vehicle_Display_doNotOvertakeTurningVehicleSign => [F] driver_DrivePastToTheRightOf_vehicle 
+r143_1_2:vehicle_Display_doNotOvertakeTurningVehicleSign => [F] driver_OvertakeToTheRightOf_vehicle
+
+r143_2_i: vehicle_Display_doNotOvertakeTurningVehicleSign & vehicle_IsTurningRight 
+& vehicle_IsGivingRightChangeOfDirectionSignal => [F] driver_DrivePastToTheRightOf_vehicle 
+
+r143_2_ii: vehicle_Display_doNotOvertakeTurningVehicleSign & vehicle_IsTurningRight 
+& vehicle_IsGivingRightChangeOfDirectionSignal => [F] driver_OvertakeToTheRightOf_vehicle
+
+r143_2_iii: vehicle_Display_doNotOvertakeTurningVehicleSign & vehicle_IsMakingUturn & vehicle_IsOn_centreOfRoad
+& vehicle_IsGivingRightChangeOfDirectionSignal => [F] driver_DrivePastToTheRightOf_vehicle
+
+r143_2_iv: vehicle_Display_doNotOvertakeTurningVehicleSign & vehicle_IsMakingUturn & vehicle_IsOn_centreOfRoad
+& vehicle_IsGivingRightChangeOfDirectionSignal => [F] driver_OvertakeToTheRightOf_vehicle
+
+r143_2_exception_i: vehicle_Display_doNotOvertakeTurningVehicleSign & IsSafeToPassToTheRightOf_vehicle & [P] driver_Overtake_vehicle => [P] driver_DrivePastToTheRightOf_vehicle     
+
+r143_2_exception_ii: vehicle_Display_doNotOvertakeTurningVehicleSign & IsSafeToPassToTheRightOf_vehicle & [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheRightOf_vehicle 
+
+
+r143_2_i >> r143_1_1
+r143_2_ii >> r143_1_2
+
+r143_2_iii >> r143_1_1
+r143_2_iv >> r143_1_2
+
+r143_2_exception_i >> r143_2_i
+r143_2_exception_i >> r143_2_iii
+
+r143_2_exception_ii >> r143_2_ii
+r143_2_exception_ii >> r143_2_iv
+
+r143_2_exception_i >> r143_1_1
+r143_2_exception_ii >> r143_1_2
+
+
+r142_1: [P] driver_Overtake_vehicle => [P] driver_OvertakeToTheRightOf_vehicle
+
+r142_1_a_i: vehicle_IsTurningRight => [F] driver_OvertakeToTheRightOf_vehicle
+
+r142_1_a_ii: vehicle_IsTurningRight & vehicle_IsGivingRightChangeOfDirectionSignal
+=> [F] driver_OvertakeToTheRightOf_vehicle
+
+r142_1_a_iii: vehicle_IsMakingUturn & vehicle_IsOn_centreOfRoad => [F] driver_OvertakeToTheRightOf_vehicle
+
+r142_1_a_iv: vehicle_IsMakingUturn & vehicle_IsOn_centreOfRoad 
+& vehicle_IsGivingRightChangeOfDirectionSignal => [F] driver_OvertakeToTheRightOf_vehicle
+
+r142_1_b: vehicle_IsGivingRightChangeOfDirectionSignal => [F] driver_OvertakeToTheRightOf_vehicle
+
+
+
+r142_1_a_i >> r142_1
+r142_1_a_ii >> r142_1
+r142_1_a_iii >> r142_1
+r142_1_a_iv >> r142_1
+r142_1_b >> r142_1
+
+
+r140: => [F] driver_Overtake_vehicle
+r140exc: driver_HasClearViewOf_approachingTraffic & driver_CanSafelyOvertake_vehicle
+    => [P] driver_Overtake_vehicle
+
+r140exc >> r140
+
