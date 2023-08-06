@@ -1,0 +1,444 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/bhuiyanh/ontologies/2020/5/untitled-ontology-137"
+         xmlns="http://www.semanticweb.org/bhuiyanh/ontologies/2020/5/untitled-ontology-137#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/bhuiyanh/ontologies/2020/5/untitled-ontology-137"/>
+
+<owl:ObjectProperty rdf:about="#driving">
+  <rdfs:domain rdf:resource="#timestamp"/>
+  <rdfs:range rdf:resource="#vehicle"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_acceleration">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#action"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_deceleration">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#action"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_donotoveratkesign">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#directionsignal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_emergencylight">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#directionsignal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_goingleft">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#directionsignal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_goingright">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#directionsignal"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_heading">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#action"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_lanenumber">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#drivingbehaviour"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_positionx">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#gps"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_positiony">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#gps"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_spacebackway">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#space"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_spaceheadway">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#space"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_speed">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#action"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_stopsign">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="#directionsignal"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#is_accelerate">
+  <rdfs:domain rdf:resource="#action"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_decelerate">
+  <rdfs:domain rdf:resource="#action"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_donotovertakesign">
+  <rdfs:domain rdf:resource="#directionsignal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_driving">
+  <rdfs:domain rdf:resource="#vehicle"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_emergencylight">
+  <rdfs:domain rdf:resource="#directionsignal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_goingleft">
+  <rdfs:domain rdf:resource="#directionsignal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_goingright">
+  <rdfs:domain rdf:resource="#directionsignal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_heading">
+  <rdfs:domain rdf:resource="#action"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_lanenumber">
+  <rdfs:domain rdf:resource="#drivingbehaviour"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_positionx">
+  <rdfs:domain rdf:resource="#gps"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_positiony">
+  <rdfs:domain rdf:resource="#gps"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_spacebackway">
+  <rdfs:domain rdf:resource="#space"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_spaceheadway">
+  <rdfs:domain rdf:resource="#space"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_speed">
+  <rdfs:domain rdf:resource="#action"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_stopsign">
+  <rdfs:domain rdf:resource="#directionsignal"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_acceleration">
+  <rdfs:domain rdf:resource="#action"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_deceleration">
+  <rdfs:domain rdf:resource="#action"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#timestamp">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#vehicle">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#action">
+  <rdfs:subClassOf rdf:resource="#drivingbehaviour"/>
+</owl:Class>
+
+<owl:Class rdf:about="#directionsignal">
+  <rdfs:subClassOf rdf:resource="#drivingbehaviour"/>
+</owl:Class>
+
+<owl:Class rdf:about="#drivingbehaviour">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#gps">
+  <rdfs:subClassOf rdf:resource="#drivingbehaviour"/>
+</owl:Class>
+
+<owl:Class rdf:about="#space">
+  <rdfs:subClassOf rdf:resource="#drivingbehaviour"/>
+</owl:Class>
+
+<owl:Class rdf:about="#acceleration">
+  <rdfs:subClassOf rdf:resource="#action"/>
+</owl:Class>
+
+<owl:Class rdf:about="#deceleration">
+  <rdfs:subClassOf rdf:resource="#action"/>
+</owl:Class>
+
+<owl:Class rdf:about="#donotovertakesign">
+  <rdfs:subClassOf rdf:resource="#directionsignal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#emergencylight">
+  <rdfs:subClassOf rdf:resource="#directionsignal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#goingleft">
+  <rdfs:subClassOf rdf:resource="#directionsignal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#goingright">
+  <rdfs:subClassOf rdf:resource="#directionsignal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#heading">
+  <rdfs:subClassOf rdf:resource="#action"/>
+</owl:Class>
+
+<owl:Class rdf:about="#lanenumber">
+  <rdfs:subClassOf rdf:resource="#drivingbehaviour"/>
+</owl:Class>
+
+<owl:Class rdf:about="#positionx">
+  <rdfs:subClassOf rdf:resource="#gps"/>
+</owl:Class>
+
+<owl:Class rdf:about="#positiony">
+  <rdfs:subClassOf rdf:resource="#gps"/>
+</owl:Class>
+
+<owl:Class rdf:about="#spacebackway">
+  <rdfs:subClassOf rdf:resource="#space"/>
+</owl:Class>
+
+<owl:Class rdf:about="#spaceheadway">
+  <rdfs:subClassOf rdf:resource="#space"/>
+</owl:Class>
+
+<owl:Class rdf:about="#speed">
+  <rdfs:subClassOf rdf:resource="#action"/>
+</owl:Class>
+
+<owl:Class rdf:about="#stopsign">
+  <rdfs:subClassOf rdf:resource="#directionsignal"/>
+</owl:Class>
+
+<acceleration rdf:about="#acc">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</acceleration>
+
+<deceleration rdf:about="#dece">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</deceleration>
+
+<donotovertakesign rdf:about="#donotfilters">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</donotovertakesign>
+
+<emergencylight rdf:about="#emerlight">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</emergencylight>
+
+<goingright rdf:about="#go_right">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</goingright>
+
+<goingleft rdf:about="#goleft">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</goingleft>
+
+<heading rdf:about="#head">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</heading>
+
+<lanenumber rdf:about="#laneno">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</lanenumber>
+
+<positionx rdf:about="#posx">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</positionx>
+
+<positiony rdf:about="#posy">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</positiony>
+
+<spacebackway rdf:about="#spaceb">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</spacebackway>
+
+<spaceheadway rdf:about="#spaceh">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</spaceheadway>
+
+<speed rdf:about="#spee">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</speed>
+
+<stopsign rdf:about="#sto">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</stopsign>
+
+<timestamp rdf:about="#8.85">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <driving rdf:resource="#vehicle-1"/>
+  <driving rdf:resource="#vehicle-2"/>
+  <driving rdf:resource="#vehicle-3"/>
+  <driving rdf:resource="#vehicle-4"/>
+</timestamp>
+
+<vehicle rdf:about="#vehicle-1">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_acceleration rdf:resource="#acc"/>
+  <has_deceleration rdf:resource="#dece"/>
+  <has_emergencylight rdf:resource="#emerlight"/>
+  <has_goingleft rdf:resource="#goleft"/>
+  <has_goingright rdf:resource="#go_right"/>
+  <has_heading rdf:resource="#head"/>
+  <has_lanenumber rdf:resource="#laneno"/>
+  <has_positionx rdf:resource="#posx"/>
+  <has_positiony rdf:resource="#posy"/>
+  <has_spacebackway rdf:resource="#spaceb"/>
+  <has_spaceheadway rdf:resource="#spaceh"/>
+  <has_speed rdf:resource="#spee"/>
+  <has_stopsign rdf:resource="#sto"/>
+  <is_donotovertakesign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_donotovertakesign>
+  <is_emergencylight rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_emergencylight>
+  <is_goingleft rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingleft>
+  <is_goingright rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingright>
+  <is_heading rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_heading>
+  <is_lanenumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2.0</is_lanenumber>
+  <is_positionx rdf:datatype="http://www.w3.org/2001/XMLSchema#string">119.590110779</is_positionx>
+  <is_positiony rdf:datatype="http://www.w3.org/2001/XMLSchema#string">75.0103988647</is_positiony>
+  <is_spacebackway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spacebackway>
+  <is_spaceheadway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spaceheadway>
+  <is_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#string">87.637008667</is_speed>
+  <is_stopsign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_stopsign>
+  <is_acceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2.4335258007</is_acceleration>
+  <is_deceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_deceleration>
+</vehicle>
+
+<vehicle rdf:about="#vehicle-2">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_acceleration rdf:resource="#acc"/>
+  <has_deceleration rdf:resource="#dece"/>
+  <has_emergencylight rdf:resource="#emerlight"/>
+  <has_goingleft rdf:resource="#goleft"/>
+  <has_goingright rdf:resource="#go_right"/>
+  <has_heading rdf:resource="#head"/>
+  <has_lanenumber rdf:resource="#laneno"/>
+  <has_positionx rdf:resource="#posx"/>
+  <has_positiony rdf:resource="#posy"/>
+  <has_spacebackway rdf:resource="#spaceb"/>
+  <has_spaceheadway rdf:resource="#spaceh"/>
+  <has_speed rdf:resource="#spee"/>
+  <has_stopsign rdf:resource="#sto"/>
+  <is_donotovertakesign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_donotovertakesign>
+  <is_emergencylight rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_emergencylight>
+  <is_goingleft rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingleft>
+  <is_goingright rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingright>
+  <is_heading rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_heading>
+  <is_lanenumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2.0</is_lanenumber>
+  <is_positionx rdf:datatype="http://www.w3.org/2001/XMLSchema#string">102.118278503</is_positionx>
+  <is_positiony rdf:datatype="http://www.w3.org/2001/XMLSchema#string">64.639251709</is_positiony>
+  <is_spacebackway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spacebackway>
+  <is_spaceheadway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spaceheadway>
+  <is_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#string">46.0868759155</is_speed>
+  <is_stopsign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_stopsign>
+  <is_acceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.58053970337</is_acceleration>
+  <is_deceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_deceleration>
+</vehicle>
+
+<vehicle rdf:about="#vehicle-3">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_acceleration rdf:resource="#acc"/>
+  <has_deceleration rdf:resource="#dece"/>
+  <has_emergencylight rdf:resource="#emerlight"/>
+  <has_goingleft rdf:resource="#goleft"/>
+  <has_goingright rdf:resource="#go_right"/>
+  <has_heading rdf:resource="#head"/>
+  <has_lanenumber rdf:resource="#laneno"/>
+  <has_positionx rdf:resource="#posx"/>
+  <has_positiony rdf:resource="#posy"/>
+  <has_spacebackway rdf:resource="#spaceb"/>
+  <has_spaceheadway rdf:resource="#spaceh"/>
+  <has_speed rdf:resource="#spee"/>
+  <has_stopsign rdf:resource="#sto"/>
+  <is_donotovertakesign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_donotovertakesign>
+  <is_emergencylight rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_emergencylight>
+  <is_goingleft rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingleft>
+  <is_goingright rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingright>
+  <is_heading rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_heading>
+  <is_lanenumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3.0</is_lanenumber>
+  <is_positionx rdf:datatype="http://www.w3.org/2001/XMLSchema#string">109.359474182</is_positionx>
+  <is_positiony rdf:datatype="http://www.w3.org/2001/XMLSchema#string">64.6806869507</is_positiony>
+  <is_spacebackway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spacebackway>
+  <is_spaceheadway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spaceheadway>
+  <is_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#string">42.6806373596</is_speed>
+  <is_stopsign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_stopsign>
+  <is_acceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.46907627583</is_acceleration>
+  <is_deceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_deceleration>
+</vehicle>
+
+<vehicle rdf:about="#vehicle-4">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <has_acceleration rdf:resource="#acc"/>
+  <has_deceleration rdf:resource="#dece"/>
+  <has_emergencylight rdf:resource="#emerlight"/>
+  <has_goingleft rdf:resource="#goleft"/>
+  <has_goingright rdf:resource="#go_right"/>
+  <has_heading rdf:resource="#head"/>
+  <has_lanenumber rdf:resource="#laneno"/>
+  <has_positionx rdf:resource="#posx"/>
+  <has_positiony rdf:resource="#posy"/>
+  <has_spacebackway rdf:resource="#spaceb"/>
+  <has_spaceheadway rdf:resource="#spaceh"/>
+  <has_speed rdf:resource="#spee"/>
+  <has_stopsign rdf:resource="#sto"/>
+  <is_donotovertakesign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_donotovertakesign>
+  <is_emergencylight rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_emergencylight>
+  <is_goingleft rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingleft>
+  <is_goingright rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_goingright>
+  <is_heading rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_heading>
+  <is_lanenumber rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0</is_lanenumber>
+  <is_positionx rdf:datatype="http://www.w3.org/2001/XMLSchema#string">123.490730286</is_positionx>
+  <is_positiony rdf:datatype="http://www.w3.org/2001/XMLSchema#string">80.6100845337</is_positiony>
+  <is_spacebackway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spacebackway>
+  <is_spaceheadway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_spaceheadway>
+  <is_speed rdf:datatype="http://www.w3.org/2001/XMLSchema#string">44.8451309204</is_speed>
+  <is_stopsign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_stopsign>
+  <is_acceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.47000002861</is_acceleration>
+  <is_deceleration rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_deceleration>
+</vehicle>
+
+
+</rdf:RDF>

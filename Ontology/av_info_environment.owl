@@ -1,0 +1,617 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://www.semanticweb.org/bhuiyanh/ontologies/2020/5/untitled-ontology-139"
+         xmlns="http://www.semanticweb.org/bhuiyanh/ontologies/2020/5/untitled-ontology-139#">
+
+<owl:Ontology rdf:about="http://www.semanticweb.org/bhuiyanh/ontologies/2020/5/untitled-ontology-139"/>
+
+<owl:ObjectProperty rdf:about="#has_bicyleway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_brokencenterline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_busway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_continouscenterline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_crossingwithouttrafficsign">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_endsign">
+  <rdfs:domain rdf:resource="#roadsign"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_foggyweather">
+  <rdfs:domain rdf:resource="#weathercondition"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_freeway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_givewayline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_has_crossingwithtrafficsign">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_heavyrain">
+  <rdfs:domain rdf:resource="#weathercondition"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_highway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_hospitalzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_intersection">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_localstreet">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_markedlane">
+  <rdfs:domain rdf:resource="#lane"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_motorway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_nofiltersign">
+  <rdfs:domain rdf:resource="#roadsign"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_nonmarkedlane">
+  <rdfs:domain rdf:resource="#lane"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_notenoughlight">
+  <rdfs:domain rdf:resource="#weathercondition"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_notenoughtlight"/>
+
+<owl:ObjectProperty rdf:about="#has_pedestriancrossing">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_railcrossing">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_roadmaintanance">
+  <rdfs:domain rdf:resource="#specialzone"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_roadspeed">
+  <rdfs:domain rdf:resource="#environment"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_roundabout">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_schoolzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_sharedzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_stopline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_totallane">
+  <rdfs:domain rdf:resource="#environment"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_twowayroad">
+  <rdfs:domain rdf:resource="#roadtype"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#has_universityzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#is_bicycleway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_brokencenterline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_busway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_continouscenterline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_crossingwithouttrafficsign">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_crossingwithtrafficsign">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_endsign">
+  <rdfs:domain rdf:resource="#roadsign"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_foggyweather">
+  <rdfs:domain rdf:resource="#weathercondition"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_freeway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_givewayline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_heavyrain">
+  <rdfs:domain rdf:resource="#weathercondition"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_highway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_hospitalzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_intersection">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_localstreet">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_markedlane">
+  <rdfs:domain rdf:resource="#lane"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_motorway">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_nofiltersign">
+  <rdfs:domain rdf:resource="#roadsign"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_nonmarkedlane">
+  <rdfs:domain rdf:resource="#lane"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_notenoughlight">
+  <rdfs:domain rdf:resource="#weathercondition"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_notenoughtlight">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_pedestriancrossing">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_railcrossing">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_roadmaintanance">
+  <rdfs:domain rdf:resource="#specialzone"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_roadspeed">
+  <rdfs:domain rdf:resource="#environment"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_roundabout">
+  <rdfs:domain rdf:resource="#roadconnection"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_schoolzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_sharedzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_stopline">
+  <rdfs:domain rdf:resource="#roadmarking"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_totallane">
+  <rdfs:domain rdf:resource="#environment"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_twowayroad">
+  <rdfs:domain rdf:resource="#roadtype"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#is_universityzone">
+  <rdfs:domain rdf:resource="#specialzone"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#roadtype">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#roadmarking">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#roadconnection">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#roadsign">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#weathercondition">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#specialzone">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#lane">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#environment">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#roadspeed">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#totallane">
+  <rdfs:subClassOf rdf:resource="#environment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#nofiltersign">
+  <rdfs:subClassOf rdf:resource="#roadsign"/>
+</owl:Class>
+
+<owl:Class rdf:about="#endsign">
+  <rdfs:subClassOf rdf:resource="#roadsign"/>
+</owl:Class>
+
+<owl:Class rdf:about="#intersection">
+  <rdfs:subClassOf rdf:resource="#roadconnection"/>
+</owl:Class>
+
+<owl:Class rdf:about="#crossingwithouttrafficsign">
+  <rdfs:subClassOf rdf:resource="#roadconnection"/>
+</owl:Class>
+
+<owl:Class rdf:about="#crossingwithtrafficsign">
+  <rdfs:subClassOf rdf:resource="#roadconnection"/>
+</owl:Class>
+
+<owl:Class rdf:about="#railcrossing">
+  <rdfs:subClassOf rdf:resource="#roadconnection"/>
+</owl:Class>
+
+<owl:Class rdf:about="#roundabout">
+  <rdfs:subClassOf rdf:resource="#roadconnection"/>
+</owl:Class>
+
+<owl:Class rdf:about="#pedestriancrossing">
+  <rdfs:subClassOf rdf:resource="#roadconnection"/>
+</owl:Class>
+
+<owl:Class rdf:about="#brokencenterline">
+  <rdfs:subClassOf rdf:resource="#roadmarking"/>
+</owl:Class>
+
+<owl:Class rdf:about="#continouscenterline">
+  <rdfs:subClassOf rdf:resource="#roadmarking"/>
+</owl:Class>
+
+<owl:Class rdf:about="#givewayline">
+  <rdfs:subClassOf rdf:resource="#roadmarking"/>
+</owl:Class>
+
+<owl:Class rdf:about="#stopline">
+  <rdfs:subClassOf rdf:resource="#roadmarking"/>
+</owl:Class>
+
+<owl:Class rdf:about="#schoolzone">
+  <rdfs:subClassOf rdf:resource="#specialzone"/>
+</owl:Class>
+
+<owl:Class rdf:about="#hospitalzone">
+  <rdfs:subClassOf rdf:resource="#specialzone"/>
+</owl:Class>
+
+<owl:Class rdf:about="#universityzone">
+  <rdfs:subClassOf rdf:resource="#specialzone"/>
+</owl:Class>
+
+<owl:Class rdf:about="#roadmaintanance">
+  <rdfs:subClassOf rdf:resource="#specialzone"/>
+</owl:Class>
+
+<owl:Class rdf:about="#sharedzone">
+  <rdfs:subClassOf rdf:resource="#specialzone"/>
+</owl:Class>
+
+<owl:Class rdf:about="#markedlane">
+  <rdfs:subClassOf rdf:resource="#lane"/>
+</owl:Class>
+
+<owl:Class rdf:about="#nonmarkedlane">
+  <rdfs:subClassOf rdf:resource="#lane"/>
+</owl:Class>
+
+<owl:Class rdf:about="#busway">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#bicycleway">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#freeway">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#highway">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#motorway">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#localstreet">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#twowayroad">
+  <rdfs:subClassOf rdf:resource="#roadtype"/>
+</owl:Class>
+
+<owl:Class rdf:about="#foggyweather">
+  <rdfs:subClassOf rdf:resource="#weathercondition"/>
+</owl:Class>
+
+<owl:Class rdf:about="#heavyrain">
+  <rdfs:subClassOf rdf:resource="#weathercondition"/>
+</owl:Class>
+
+<owl:Class rdf:about="#notenoughlight">
+  <rdfs:subClassOf rdf:resource="#weathercondition"/>
+</owl:Class>
+
+<owl:Class rdf:about="#timestamp">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<bicycleway rdf:about="#bicyclew">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</bicycleway>
+
+<brokencenterline rdf:about="#brokencenterl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</brokencenterline>
+
+<busway rdf:about="#busw">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</busway>
+
+<continouscenterline rdf:about="#continouscenterl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</continouscenterline>
+
+<crossingwithtrafficsign rdf:about="#crosswithts">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</crossingwithtrafficsign>
+
+<crossingwithouttrafficsign rdf:about="#croswithoutts">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</crossingwithouttrafficsign>
+
+<endsign rdf:about="#ends">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</endsign>
+
+<foggyweather rdf:about="#foggyw">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</foggyweather>
+
+<freeway rdf:about="#freew">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</freeway>
+
+<givewayline rdf:about="#givewayl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</givewayline>
+
+<heavyrain rdf:about="#heavyr">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</heavyrain>
+
+<highway rdf:about="#highw">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</highway>
+
+<hospitalzone rdf:about="#hospitalz">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</hospitalzone>
+
+<intersection rdf:about="#intersec">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</intersection>
+
+<localstreet rdf:about="#locals">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</localstreet>
+
+<markedlane rdf:about="#markedl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</markedlane>
+
+<motorway rdf:about="#motorw">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</motorway>
+
+<nofiltersign rdf:about="#nofilters">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</nofiltersign>
+
+<nonmarkedlane rdf:about="#nonmarkedl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</nonmarkedlane>
+
+<notenoughlight rdf:about="#notenoughl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</notenoughlight>
+
+<pedestriancrossing rdf:about="#pedestrians">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</pedestriancrossing>
+
+<railcrossing rdf:about="#railc">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</railcrossing>
+
+<roadmaintanance rdf:about="#roadmain">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</roadmaintanance>
+
+<roadmarking rdf:about="#roadmark">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</roadmarking>
+
+<roadspeed rdf:about="#roads">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</roadspeed>
+
+<roundabout rdf:about="#rounda">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</roundabout>
+
+<schoolzone rdf:about="#schoolz">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</schoolzone>
+
+<sharedzone rdf:about="#sharedz">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</sharedzone>
+
+<stopline rdf:about="#stopl">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</stopline>
+
+<totallane rdf:about="#totall">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</totallane>
+
+<twowayroad rdf:about="#twoway">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</twowayroad>
+
+<universityzone rdf:about="#universityz">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+</universityzone>
+
+<timestamp rdf:about="#8.85">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+  <is_bicycleway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_bicycleway>
+  <is_brokencenterline rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0</is_brokencenterline>
+  <is_busway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_busway>
+  <is_continouscenterline rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_continouscenterline>
+  <is_endsign rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_endsign>
+  <is_foggyweather rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_foggyweather>
+  <is_freeway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_freeway>
+  <is_givewayline rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_givewayline>
+  <is_heavyrain rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_heavyrain>
+  <is_highway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_highway>
+  <is_hospitalzone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_hospitalzone>
+  <is_intersection rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_intersection>
+  <is_localstreet rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_localstreet>
+  <is_markedlane rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1.0</is_markedlane>
+  <is_motorway rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_motorway>
+  <is_nonmarkedlane rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_nonmarkedlane>
+  <is_notenoughlight rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_notenoughlight>
+  <is_pedestriancrossing rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_pedestriancrossing>
+  <is_railcrossing rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_railcrossing>
+  <is_roadmaintanance rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_roadmaintanance>
+  <is_roadspeed rdf:datatype="http://www.w3.org/2001/XMLSchema#string">100.0</is_roadspeed>
+  <is_roundabout rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_roundabout>
+  <is_schoolzone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_schoolzone>
+  <is_sharedzone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_sharedzone>
+  <is_stopline rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_stopline>
+  <is_totallane rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3.0</is_totallane>
+  <is_twowayroad rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_twowayroad>
+  <is_universityzone rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.0</is_universityzone>
+</timestamp>
+
+
+</rdf:RDF>
